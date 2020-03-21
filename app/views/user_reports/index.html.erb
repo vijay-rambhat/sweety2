@@ -1,0 +1,39 @@
+<style>
+
+table, thead, td {
+  border: 1px solid black;
+}
+
+thead {
+    background-color: #5cb85c;
+    color: white;
+} 
+</style>
+
+<%= render :partial => "modal_popup"%>
+
+<div style="padding-left:5%; padding-right: 5%;">
+
+	<h2 style="color:green;"> <%=current_user.name.upcase%> </h2>
+	<div>
+		<%=link_to "Add Blood Glucose Level", '#', {:class => "btn btn-info", 'data-toggle' => "modal", 'data-target' => "#myModal"}%>
+		<%=link_to "Log Out", destroy_user_session_path, :class => "btn btn-danger" , :style => "position:absolute;right:5%;"%>
+	</div>
+	
+	</br>
+	<%=form_tag({:controller => 'user_reports', :action => 'index'}, method: :get) do%>
+		<div>
+			<%=text_field_tag :end_date, @end_date%>
+			<%=select_tag :report_type, options_for_select([['DAILY REPORT','DAILY'],['MONTH TO DATE REPORT','MONTH TO DATE'],['MONTHLY REPORT','MONTHLY']], :selected => @report_type)%>
+			<%=submit_tag "Get Report", :class => "btn btn-info"%>
+			<%=link_to "Clear", user_reports_path, :class => "btn btn-danger"%>
+		</div>
+	<%end%>
+	</br>
+	
+	<%=render :partial => "table_data"%>
+
+<div>
+<script>
+	jQuery('#end_date').datepicker( { dateFormat: 'yy-mm-dd' } );
+</script>

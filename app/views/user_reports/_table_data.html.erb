@@ -1,0 +1,30 @@
+<h4 style='color:green;'><%=@report_type + " REPORT"%></h4>
+<table class='table table-bordered'>
+	<thead>
+		<tr>
+			<%if @report_type == 'DAILY'%>
+				<td>Date</td>
+			<%else%>
+				<td>Start Date</td>
+				<td>End Date</td>
+			<%end%>
+			<td>Maximum Glucose Level</td>
+			<td>Minimum Glucose Level</td>
+			<td>Average Glucose Level</td>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<%if @report_type == 'DAILY'%>
+				<td><%=@end_date%></td>
+			<%else%>
+				<td><%=@start_date%></td>
+				<td><%=@end_date%></td>
+			<%end%>
+			<td><%=@maximum.present? ? @maximum : '-'%></td>
+			<td><%=@minimum.present? ? @minimum : '-'%></td>
+			<td><%=@average.present? ? @average : '-'%></td>		
+		</tr>
+	</tbody>
+</table>

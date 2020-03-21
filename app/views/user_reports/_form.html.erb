@@ -1,0 +1,55 @@
+<div style="padding-left:5%; padding-right: 5%;">
+
+	</br>
+	
+	<%=form_for @user_report do |f|%>
+		<div>
+			<%=f.label :blood_glucose_level%></br>
+			<%=f.text_field :blood_glucose_level, :onkeypress => "return isNumberKey(event)" %>	
+		</div>
+		</br>
+		<div>
+			<%=f.submit "Add" ,:onclick => "return validateUserReportForm();", :class => "btn btn-info"%>
+		</div>
+	<%end%>
+</div>
+
+<script>
+
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+
+function validateUserReportForm()
+{
+	jQuery("#user_report_blood_glucose_level").parent().next(".validation").remove(); 
+	
+	if (jQuery('#user_report_blood_glucose_level').val() == "") 
+	{
+		jQuery("#user_report_blood_glucose_level").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter Blood Glucose Level</div>");
+    } 
+    else 
+    {
+    	jQuery.ajax({
+			url: '<%=check_if_user_submitted_max_times_user_reports_path%>',
+			method: "GET",
+			success : (function(data){
+				if(data == false)
+				{
+					jQuery("#user_report_blood_glucose_level").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Already 4 samples have been taken for the day. Kindly take the samples tomorrow</div>");
+					return false;
+				}
+			}),
+			async: false
+		});     
+    }
+	
+	if(jQuery("#user_report_blood_glucose_level").parent().next(".validation").length > 0)
+	{
+		return false;
+	}
+}
+</script>

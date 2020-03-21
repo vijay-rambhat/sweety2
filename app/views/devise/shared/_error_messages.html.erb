@@ -1,0 +1,17 @@
+
+<% if resource.errors.any? %>
+  <div id="error_explanation" >
+  	<div class="isa_warning">
+  	<i class="fa fa-times-circle"></i>	
+    <h5>
+      <%= "Correct the following errors"
+       %>
+    </h5>
+    </div>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
