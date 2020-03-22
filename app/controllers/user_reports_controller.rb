@@ -28,7 +28,7 @@ class UserReportsController < ApplicationController
   def check_if_user_submitted_max_times
     blood_glucose_sample_size = UserReport.where(:user_id => current_user.id, :sample_taken_date => Date.today).collect(&:blood_glucose_level).size
     allow_submit = true
-    if blood_glucose_sample_size == 4
+    if blood_glucose_sample_size >= 4
       allow_submit = false
     else
       allow_submit = true  

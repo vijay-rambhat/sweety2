@@ -4,8 +4,8 @@
 	
 	<%=form_for @user_report do |f|%>
 		<div>
-			<%=f.label :blood_glucose_level%></br>
-			<%=f.text_field :blood_glucose_level, :onkeypress => "return isNumberKey(event)" %>	
+			<%="BLOOD GLUCOSE LEVEL"%></br>
+			<%=f.text_field :blood_glucose_level, :onkeypress => "return isNumberKey(event)", :class => "form-control" %>	
 		</div>
 		</br>
 		<div>
@@ -51,5 +51,6 @@ function validateUserReportForm()
 	{
 		return false;
 	}
+
 }
 </script>

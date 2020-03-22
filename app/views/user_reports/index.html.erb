@@ -1,20 +1,9 @@
-<style>
-
-table, thead, td {
-  border: 1px solid black;
-}
-
-thead {
-    background-color: #5cb85c;
-    color: white;
-} 
-</style>
-
+<%= stylesheet_link_tag "user_reports"%>
 <%= render :partial => "modal_popup"%>
 
 <div style="padding-left:5%; padding-right: 5%;">
 	
-	<h2 style="color:green;"> <%=current_user.name.upcase%> </h2>
+	<h2 style="color:green;"> <%=current_user.name.upcase%> </h2></br>
 	<div>
 		<%=link_to "Add Blood Glucose Level", new_user_report_path, :class => "btn btn-info", :remote => true%>
 		<%=link_to "Log Out", destroy_user_session_path, :class => "btn btn-danger" , :style => "position:absolute;right:5%;"%>
@@ -23,7 +12,7 @@ thead {
 	</br>
 	<%=form_tag({:controller => 'user_reports', :action => 'index'}, method: :get) do%>
 		<div>
-			<%=text_field_tag :end_date, @end_date%>
+			<%=text_field_tag :end_date, @end_date, class: "input_background"%>
 			<%=select_tag :report_type, options_for_select([['DAILY REPORT','DAILY'],['MONTH TO DATE REPORT','MONTH TO DATE'],['MONTHLY REPORT','MONTHLY']], :selected => @report_type)%>
 			<%=submit_tag "Get Report", :class => "btn btn-info"%>
 			<%=link_to "Clear", user_reports_path, :class => "btn btn-danger"%>
