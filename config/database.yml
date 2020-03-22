@@ -13,7 +13,7 @@ development:
   #<<: *default
   #database: db/development.sqlite3
   adapter: mysql2
-  database: sweety2_db
+  database: sweety_db
   username: root
   password: password
   host: localhost
@@ -22,10 +22,16 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: db/test.sqlite3
+  #<<: *default
+  #database: db/test.sqlite3
+  adapter: mysql2
+  database: sweety_test1
+  username: root
+  password: password
+  host: localhost
 
 production:
   #<<: *default
   #database: db/production.sqlite3
+  adapter: mysql2
   url: <%= ENV['DATABASE_URL'] %>

@@ -13,10 +13,10 @@ thead {
 <%= render :partial => "modal_popup"%>
 
 <div style="padding-left:5%; padding-right: 5%;">
-
+	
 	<h2 style="color:green;"> <%=current_user.name.upcase%> </h2>
 	<div>
-		<%=link_to "Add Blood Glucose Level", '#', {:class => "btn btn-info", 'data-toggle' => "modal", 'data-target' => "#myModal"}%>
+		<%=link_to "Add Blood Glucose Level", new_user_report_path, :class => "btn btn-info", :remote => true%>
 		<%=link_to "Log Out", destroy_user_session_path, :class => "btn btn-danger" , :style => "position:absolute;right:5%;"%>
 	</div>
 	

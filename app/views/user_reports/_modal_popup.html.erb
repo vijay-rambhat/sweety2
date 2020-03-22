@@ -8,7 +8,11 @@
           	<button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <%=render :partial => "form"%>
+        	<div id='form'>
+	          <%if @user_report.present?%>	
+	          	<%=render :partial => "form"%>
+	          <%end%>	
+	        </div>  
         </div>
       </div>
       

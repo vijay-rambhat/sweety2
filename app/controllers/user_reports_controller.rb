@@ -4,9 +4,15 @@ class UserReportsController < ApplicationController
     @maximum = nil
     @minimum = nil
     @average = nil
-    @user_report = UserReport.new
     
     @maximum, @minimum, @average, @report_type, @end_date, @start_date = UserReport.get_minimum_maximum_and_average(params,current_user)
+  end
+  
+  def new
+    @user_report = UserReport.new
+    respond_to do |format| 
+      format.js
+    end
   end
   
   def create
